@@ -14,7 +14,9 @@ WORKDIR /etc/xen-orchestra
 RUN yarn config set network-timeout 200000 && yarn && yarn build
 
 # Builds the v6 webui
-RUN yarn run turbo run build --filter @xen-orchestra/web
+# RUN yarn run turbo run build --filter @xen-orchestra/web
+RUN yarn
+RUN yarn build
 
 # Install plugins
 RUN find /etc/xen-orchestra/packages/ -maxdepth 1 -mindepth 1 -not -name "xo-server" -not -name "xo-web" -not -name "xo-server-cloud" -not -name "xo-server-test" -not -name "xo-server-test-plugin" -exec ln -s {} /etc/xen-orchestra/packages/xo-server/node_modules \;
